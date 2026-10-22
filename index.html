@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CYBERSHIELD is an educational phishing URL risk analyzer.">
+  <title>CYBERSHIELD | URL Risk Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CYBERSHIELD home">
+      <span class="brand-icon">C</span>
+      CYBERSHIELD
+    </a>
+    <span class="status"><span class="status-dot"></span> RULE-BASED ANALYSIS</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">CYBERSECURITY TOOLKIT / 001</p>
+      <h1>Phishing URL <span>Risk Analyzer</span></h1>
+      <p class="subtitle">
+        Inspect suspicious links, identify warning signs, and understand
+        the risk indicators before you interact with a URL.
+      </p>
+    </section>
+
+    <section class="analyzer panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">URL INSPECTION</p>
+          <h2>Analyze a link</h2>
+        </div>
+        <span class="lock-icon" aria-hidden="true">⌕</span>
+      </div>
+
+      <form id="url-form">
+        <label for="url-input">Website URL</label>
+        <div class="input-row">
+          <input
+            id="url-input"
+            type="text"
+            placeholder="https://example.com/login"
+            autocomplete="url"
+            spellcheck="false"
+            required
+          >
+          <button type="submit" id="analyze-button">Analyze URL ↗</button>
+        </div>
+        <p class="helper">
+          Use a URL you want to inspect. This tool analyzes URL patterns only;
+          it does not visit the website.
+        </p>
+        <p id="input-error" class="error" role="alert" hidden></p>
+      </form>
+
+      <div class="example-row">
+        <span>Try an example:</span>
+        <button class="example-button" type="button"
+          data-example="https://www.wikipedia.org">Ordinary URL</button>
+        <button class="example-button" type="button"
+          data-example="http://secure-login.example.com.verify-user.test/login">
+          Suspicious-looking URL
+        </button>
+      </div>
+    </section>
+
+    <section id="results" class="results" aria-live="polite" hidden>
+      <div class="result-top">
+        <div>
+          <p class="eyebrow">INSPECTION REPORT</p>
+          <h2>Analysis results</h2>
+        </div>
+        <span id="verdict-badge" class="verdict-badge">PENDING</span>
+      </div>
+
+      <div class="result-grid">
+        <article class="panel score-panel">
+          <p class="eyebrow">HEURISTIC RISK SCORE</p>
+          <div class="score-line">
+            <span id="risk-score">0</span>
+            <span class="score-out-of">/100</span>
+          </div>
+          <div class="score-track">
+            <div id="score-fill" class="score-fill"></div>
+          </div>
+          <p id="risk-label" class="risk-label">Awaiting analysis</p>
+          <p class="helper">A rule-based estimate, not a verified threat rating.</p>
+        </article>
+
+        <article class="panel details-panel">
+          <p class="eyebrow">URL DETAILS</p>
+          <p class="detail-label">Normalized URL</p>
+          <p id="normalized-url" class="url-value"></p>
+          <p class="detail-label">Hostname</p>
+          <p id="hostname" class="url-value"></p>
+          <p class="detail-label">Protocol</p>
+          <p id="protocol" class="url-value"></p>
+        </article>
+      </div>
+
+      <article class="panel indicators-panel">
+        <p class="eyebrow">EXPLAINABLE DETECTION</p>
+        <h3>Risk indicators</h3>
+        <p id="indicator-summary" class="helper"></p>
+        <ul id="indicator-list" class="indicator-list"></ul>
+      </article>
+
+      <p class="disclaimer">
+        <strong>Important:</strong> A low score does not prove a URL is safe.
+        This prototype uses local URL-pattern rules only and may miss real
+        phishing sites or flag legitimate URLs. Do not enter passwords or
+        other sensitive information into suspicious websites.
+      </p>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CURRENT SESSION</p>
+          <h2>Recent analyses</h2>
+        </div>
+        <button id="clear-history" class="text-button" type="button">
+          Clear history
+        </button>
+      </div>
+      <div id="history-list" class="history-list">
+        <p class="empty-state">No URLs analyzed yet. Start with the analyzer above.</p>
+      </div>
+      <p class="helper">History is kept in memory and clears when the page is refreshed.</p>
+    </section>
+
+    <footer>
+      <span>CYBERSHIELD · EDUCATIONAL PROTOTYPE</span>
+      <span>Client-side URL pattern analysis</span>
+    </footer>
+  </main>
+</body>
+</html>
